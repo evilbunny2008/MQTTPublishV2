@@ -224,7 +224,7 @@ class AbstractPublisher(abc.ABC):
 
         valid_cert_reqs = valid_cert_reqs.get(tls_dict.get("certs_required", "required"))
         if valid_cert_reqs is None:
-            raise ValueError(f"Invalid "certs_required"., {tls_dict['certs_required']}")
+            raise ValueError(f"Invalid 'certs_required'., {tls_dict['certs_required']}")
 
         tls_version = valid_tls_versions.get(tls_dict.get("tls_version", "tlsv12"))
         if tls_version is None:
@@ -803,12 +803,12 @@ class PublishWeeWXThread(threading.Thread):
                 if updated_record[var] is None and not publish_none_value:
                     continue
 
-                self.logger.loginf(f"1 {field}: {updated_record[var]}")
+                #self.logger.loginf(f"1 {field}: {updated_record[var]}")
 
                 (name, value) = self.update_field(self.logger, topic_dict, field_dict, \
                                                   field, updated_record[var], updated_record["usUnits"])
 
-                self.logger.loginf(f"2 {name} == {value}")
+                #self.logger.loginf(f"2 {name} == {value}")
 
                 final_record[field] = value
 
@@ -847,7 +847,7 @@ class PublishWeeWXThread(threading.Thread):
         if conversion_type == "integer":
             formatted_value = to_int(converted_value)
         elif conversion_type == "float":
-            formatted_value = to_float(formatted_value)
+            formatted_value = to_float(converted_value)
         elif conversion_type is not None:
             formatted_value = format_string % converted_value
         else:
