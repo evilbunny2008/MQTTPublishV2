@@ -569,8 +569,9 @@ class MQTTPublish(StdService):
 
                     if not (tmp_minmax is None or day or yesterday or month or last_month or year or last_year):
                         archive_fields[new_field] = copy.deepcopy(fields[field])
+
                     else:
-                        if tmp_minmax is None:
+                        if tmp_minmax is None and field != "wind":
                             archive_fields[new_field] = copy.deepcopy(fields[field])
                             archive_fields[new_field]["name"] = new_field
 
@@ -586,7 +587,6 @@ class MQTTPublish(StdService):
                             archive_fields[new_field1]["name"] = new_field1
                             archive_fields[new_field2] = copy.deepcopy(fields[field])
                             archive_fields[new_field2]["name"] = new_field2
-                            #archive_fields[new_field2]["group"] = "group_time"
 
                         if tmp_minmax in ["max", "both"]:
                             new_field1 = new_field + "_max"
@@ -595,7 +595,17 @@ class MQTTPublish(StdService):
                             archive_fields[new_field1]["name"] = new_field1
                             archive_fields[new_field2] = copy.deepcopy(fields[field])
                             archive_fields[new_field2]["name"] = new_field2
-                            #archive_fields[new_field2]["group"] = "group_time"
+
+                        if field == "wind":
+                            for type in ["avg", "vecdir", "max", "maxtime", "gustdir"]:
+                                new_field1 = new_field + "_" + type
+                                archive_fields[new_field1] = copy.deepcopy(fields[field])
+                                archive_fields[new_field1]["name"] = new_field1
+
+                                if type in ["vecdir", "gustdir"]:
+                                    new_field1 += "_compass"
+                                    archive_fields[new_field1] = copy.deepcopy(fields[field])
+                                    archive_fields[new_field1]["name"] = new_field1
 
         # self.logger.logdbg(f"Configured fields: {fields}.")
         return fields, archive_fields
