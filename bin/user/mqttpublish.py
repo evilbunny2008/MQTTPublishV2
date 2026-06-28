@@ -194,10 +194,6 @@ class AbstractPublisher(abc.ABC):
         except AttributeError:
             pass
         try:
-            valid_tls_versions["tlsv13"] = ssl.PROTOCOL_TLSv1_3
-        except AttributeError:
-            pass
-        try:
             valid_tls_versions["sslv2"] = ssl.PROTOCOL_SSLv2
         except AttributeError:
             pass
