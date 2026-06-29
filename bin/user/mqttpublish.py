@@ -921,8 +921,8 @@ class PublishWeeWXThread(threading.Thread):
                 formatted_value = 0
         elif conversion_type == "ordinal_compass":
             if converted_value is not None:
-                vh = weewx.units.ValueHelper(converted_value)
-                formatted_value = vh.ordinal_compass()
+                formatter = weewx.units.Formatter()
+                formatted_value = formatter.to_ordinal_compass(converted_value)
             else:
                 formatted_value = "N/A"
         elif conversion_type is not None:
