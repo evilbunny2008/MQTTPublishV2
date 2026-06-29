@@ -726,7 +726,7 @@ class MQTTPublish(StdService):
                 topics_archive[topic]["fields"] = dict(archive_fields)
 
         #self.logger.logdbg(f"Loop topics: {topics_loop}")
-        self.logger.logdbg(f"Archive topics: {topics_archive}")
+        #self.logger.logdbg(f"Archive topics: {topics_archive}")
         return topics_loop, topics_archive
 
     def thread_start(self):
