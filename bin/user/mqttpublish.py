@@ -24,10 +24,11 @@ import traceback
 import configobj
 import paho.mqtt.client as mqtt
 
+import weecfg
 import weeutil
-from weeutil.weeutil import to_bool, to_float, to_int
-
 import weewx
+
+from weeutil.weeutil import to_bool, to_float, to_int
 from weewx.engine import StdService
 
 
