@@ -620,7 +620,7 @@ class MQTTPublish(StdService):
                                 archive_fields[new_field1]["name"] = new_field1
 
                                 if type in ["vecdir", "gustdir"]:
-                                    new_field1 += "_compass"
+                                    new_field1 += "_str"
                                     archive_fields[new_field1] = copy.deepcopy(fields[field])
                                     archive_fields[new_field1]["name"] = new_field1
 
@@ -924,7 +924,7 @@ class PublishWeeWXThread(threading.Thread):
         elif conversion_type == "ordinal_compass":
             if converted_value is not None:
                 formatter = weewx.units.Formatter()
-                formatted_value = formatter.to_ordinal_compass(converted_value)
+                formatted_value = formatter.to_ordinal_compass((converted_value,))
             else:
                 formatted_value = "N/A"
         elif conversion_type is not None:
