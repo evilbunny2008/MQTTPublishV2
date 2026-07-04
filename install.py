@@ -15,7 +15,7 @@ import configobj
 
 from weecfg.extension import ExtensionInstaller
 
-VERSION = "2.0.5"
+VERSION = "2.0.6"
 
 MQTTPUBLISH_CONFIG = """
 [MQTTPublish]

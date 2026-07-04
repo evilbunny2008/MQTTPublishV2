@@ -536,6 +536,7 @@ class MQTTPublish(StdService):
                          last_month=False,
                          year=False,
                          last_year=False,
+                         alltime=False,
                          minmax=None):
 
         """ Configure the fields. """
@@ -566,6 +567,7 @@ class MQTTPublish(StdService):
                 last_month = to_bool(field_dict.get("last_month", last_month))
                 year = to_bool(field_dict.get("year", year))
                 last_year = to_bool(field_dict.get("last_year", last_year))
+                alltime = to_bool(field_dict.get("alltime", last_year))
 
                 tmp_minmax = field_dict.get("minmax", minmax)
 
@@ -576,6 +578,7 @@ class MQTTPublish(StdService):
                     "last_month": last_month,
                     "year": year,
                     "last_year": last_year,
+                    "alltime": alltime,
                 }
 
                 for period, is_active in periods.items():
@@ -663,11 +666,12 @@ class MQTTPublish(StdService):
             format_string = topic_dict.get("format", default_format_string)
 
             day = to_bool(topic_dict.get("day", False))
-            last_year = to_bool(topic_dict.get("last_year", False))
-            year = to_bool(topic_dict.get("year", False))
-            last_month = to_bool(topic_dict.get("last_month", False))
-            month = to_bool(topic_dict.get("month", False))
             yesterday = to_bool(topic_dict.get("yesterday", False))
+            month = to_bool(topic_dict.get("month", False))
+            last_month = to_bool(topic_dict.get("last_month", False))
+            year = to_bool(topic_dict.get("year", False))
+            last_year = to_bool(topic_dict.get("last_year", False))
+            alltime = to_bool(topic_dict.get("alltime", False))
 
             minmax = topic_dict.get("minmax", None)
 
@@ -689,6 +693,7 @@ class MQTTPublish(StdService):
                                                last_month,
                                                year,
                                                last_year,
+                                               alltime,
                                                minmax)
 
             if "loop" in binding:
