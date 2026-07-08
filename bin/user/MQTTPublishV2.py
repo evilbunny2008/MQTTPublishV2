@@ -437,7 +437,7 @@ class MQTTPublish(StdService):
 
         self.logger.loginf(f"MQTTPublish version: {self.version}.")
 
-        service_dict = config_dict.get("MQTTPublish", {})
+        service_dict = config_dict.get("MQTTPublishV2", {})
 
         exclude_keys = ["password"]
         sanitized_service_dict = {k: service_dict[k] for k in set(list(service_dict.keys())) - set(exclude_keys)}
@@ -447,7 +447,7 @@ class MQTTPublish(StdService):
         #  backwards compatability
         if "PublishWeeWX" in service_dict.sections:
             self.logger.logerr("'PublishWeeWX' is deprecated. Move options to top level, '[MQTTPublish]'.")
-            service_dict = config_dict.get("MQTTPublish", {}).get("PublishWeeWX", {})
+            service_dict = config_dict.get("MQTTPublishV2", {}).get("PublishWeeWX", {})
 
         self.enable = to_bool(service_dict.get("enable", True))
         if not self.enable:
@@ -515,7 +515,7 @@ class MQTTPublish(StdService):
             if root_dict is not None:
                 ext_dir = root_dict.get("EXT_DIR", None)
                 if ext_dir is not None:
-                    ext_cache_dir = os.path.join(ext_dir, "MQTTPublish")
+                    ext_cache_dir = os.path.join(ext_dir, "MQTTPublishV2")
                     _, installer = weecfg.get_extension_installer(ext_cache_dir)
                     self.version = installer.get("version", "1.0.0")
 
