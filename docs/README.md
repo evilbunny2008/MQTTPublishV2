@@ -41,13 +41,13 @@ weectl extension install https://github.com/evilbunny2008/MQTTPublishV2/archive/
 where X.Y.Z is the release.
 The list of releases can be found at [https://github.com/evilbunny2008/MQTTPublishV2/releases](https://github.com/evilbunny2008/MQTTPublishV2/releases).
 
-The version under development can be installed from the master branch using the following invocation
+The version under development can be installed from the main branch using the following invocation
 
 ```shell
-weectl extension install https://github.com/evilbunny2008/MQTTPublishV2/archive/master.zip
+weectl extension install https://github.com/evilbunny2008/MQTTPublishV2/archive/main.zip
 ```
 
-Where `master` is the branch name.
+Where `main` is the branch name.
 
 *Note:* WeeWX 'package' installs add the user that performed the install to the `weewx` group.
 This means that this user should not need to use `sudo` to install the `weewx-mqtt/publish` extension.
