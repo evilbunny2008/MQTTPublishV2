@@ -13,7 +13,7 @@ import unittest
 import mock
 
 import helpers
-import user.mqttpublish
+import user.MQTTPublishV2
 
 import random
 
@@ -21,7 +21,7 @@ class TestInit(unittest.TestCase):
     def test_PublishWeeWX_stanza_is_deprecated(self):
         mock_engine = mock.Mock()
         config_dict = {
-            'MQTTPublish': {
+            'MQTTPublishV2': {
                 'PublishWeeWX': {
                     'topics': {}
                 }
@@ -29,19 +29,19 @@ class TestInit(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        # with mock.patch('user.mqttpublish.mqtt'):
-        with mock.patch('user.mqttpublish.weewx.manager'):
-            with mock.patch('user.mqttpublish.PublishWeeWXThread'):
-                with mock.patch('user.mqttpublish.Logger'):
-                    SUT = user.mqttpublish.MQTTPublish(mock_engine, config)
+        # with mock.patch('user.MQTTPublishV2.mqtt'):
+        with mock.patch('user.MQTTPublishV2.weewx.manager'):
+            with mock.patch('user.MQTTPublishV2.PublishWeeWXThread'):
+                with mock.patch('user.MQTTPublishV2.Logger'):
+                    SUT = user.MQTTPublishV2.MQTTPublish(mock_engine, config)
                     SUT.logger.logerr.assert_called_once_with(
-                        "'PublishWeeWX' is deprecated. Move options to top level, '[MQTTPublish]'.")
+                        "'PublishWeeWX' is deprecated. Move options to top level, '[MQTTPublishV2]'.")
 
 class TestConfigureTopics(unittest.TestCase):
     def test_config_topics(self):
         mock_engine = mock.Mock()
         config_dict = {
-            'MQTTPublish': {
+            'MQTTPublishV2': {
                 'enable': False,
             }
         }
@@ -55,9 +55,9 @@ class TestConfigureTopics(unittest.TestCase):
         }
         service_config = configobj.ConfigObj(service_dict)
 
-        with mock.patch('user.mqttpublish.PublishWeeWXThread'):
-            with mock.patch('user.mqttpublish.Logger'):
-                SUT = user.mqttpublish.MQTTPublish(mock_engine, config)
+        with mock.patch('user.MQTTPublishV2.PublishWeeWXThread'):
+            with mock.patch('user.MQTTPublishV2.Logger'):
+                SUT = user.MQTTPublishV2.MQTTPublish(mock_engine, config)
 
                 topics_loop, topics_archive = SUT.configure_topics(service_config)
 
@@ -102,9 +102,9 @@ class TestConfigureTopics(unittest.TestCase):
         }
         service_config = configobj.ConfigObj(service_dict)
 
-        with mock.patch('user.mqttpublish.PublishWeeWXThread'):
-            with mock.patch('user.mqttpublish.Logger'):
-                SUT = user.mqttpublish.MQTTPublish(mock_engine, config)
+        with mock.patch('user.MQTTPublishV2.PublishWeeWXThread'):
+            with mock.patch('user.MQTTPublishV2.Logger'):
+                SUT = user.MQTTPublishV2.MQTTPublish(mock_engine, config)
 
                 topics_loop, topics_archive = SUT.configure_topics(service_config)
 
@@ -149,7 +149,7 @@ class TestConfigureTopics(unittest.TestCase):
         topic1 = helpers.random_string()
         aggreagate1 = helpers.random_string()
         week_start = random.randint(0, 6)
-        timespan_provider = user.mqttpublish.TimeSpanProvider(week_start)
+        timespan_provider = user.MQTTPublishV2.TimeSpanProvider(week_start)
         period = random.choice(list(timespan_provider.period_timespans.keys()))
         service_dict = {
             'topics': {
@@ -164,9 +164,9 @@ class TestConfigureTopics(unittest.TestCase):
         }
         service_config = configobj.ConfigObj(service_dict)
 
-        with mock.patch('user.mqttpublish.PublishWeeWXThread'):
-            with mock.patch('user.mqttpublish.Logger'):
-                SUT = user.mqttpublish.MQTTPublish(mock_engine, config)
+        with mock.patch('user.MQTTPublishV2.PublishWeeWXThread'):
+            with mock.patch('user.MQTTPublishV2.Logger'):
+                SUT = user.MQTTPublishV2.MQTTPublish(mock_engine, config)
 
                 topics_loop, topics_archive = SUT.configure_topics(service_config)
 

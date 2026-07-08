@@ -18,7 +18,7 @@ import mock
 import helpers
 import mqttstubs
 
-import user.mqttpublish
+import user.MQTTPublishV2
 
 class PublisherBase(unittest.TestCase):
     class_under_test = object
@@ -46,9 +46,9 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
 
                     SUT = self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -76,9 +76,9 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
 
                     SUT = self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -104,10 +104,10 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'username_pw_set') as mock_username_pw_set:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'username_pw_set') as mock_username_pw_set:
 
                         self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -130,10 +130,10 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'username_pw_set') as mock_username_pw_set:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'username_pw_set') as mock_username_pw_set:
 
                         self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -156,10 +156,10 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'username_pw_set') as mock_username_pw_set:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'username_pw_set') as mock_username_pw_set:
 
                         self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -182,9 +182,9 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.mqtt.Client,
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.mqtt.Client,
                                        'connect',
                                        side_effect=mqttstubs.ClientStub.connect_with_connection,
                                        autospec=True) as mock_connect:
@@ -211,9 +211,9 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.mqtt.Client,
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.mqtt.Client,
                                        'connect',
                                        side_effect=mqttstubs.ClientStub.connect_without_connection,
                                        autospec=True) as mock_connect:
@@ -240,9 +240,9 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.mqtt.Client,
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.mqtt.Client,
                                        'connect',
                                        side_effect=mqttstubs.ClientStub.connect_exception_first_call,
                                        autospec=True) as mock_connect:
@@ -270,9 +270,9 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.mqtt.Client,
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.mqtt.Client,
                                        'connect',
                                        side_effect=mqttstubs.ClientStub.connect_exception_subsequent_calls,
                                        autospec=True) as mock_connect:
@@ -302,10 +302,10 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'will_set') as mock_will_set:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'will_set') as mock_will_set:
 
                         self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -335,10 +335,10 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'will_set') as mock_will_set:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'will_set') as mock_will_set:
 
                         self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -364,11 +364,11 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.AbstractPublisher, '_reconnect') as mock_reconnect:
-                        with mock.patch.object(user.mqttpublish.mqtt.Client, 'publish') as mock_publish:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_reconnect') as mock_reconnect:
+                        with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'publish') as mock_publish:
 
                             SUT = self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -400,11 +400,11 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.AbstractPublisher, '_reconnect') as mock_reconnect:
-                        with mock.patch.object(user.mqttpublish.mqtt.Client, 'publish') as mock_publish:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_reconnect') as mock_reconnect:
+                        with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'publish') as mock_publish:
 
                             SUT = self.class_under_test(mock_logger, mock_publisher, config)
 
@@ -436,10 +436,10 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client,
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client,
                                            'reconnect',
                                            side_effect=mqttstubs.ClientStub.reconnect_with_connection,
                                            autospec=True) as mock_reconnect:
@@ -467,15 +467,15 @@ class PublisherBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client,
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client,
                                            'reconnect',
                                            side_effect=mqttstubs.ClientStub.reconnect_without_connection,
                                            autospec=True) as mock_reconnect:
 
-                        with self.assertRaises(user.mqttpublish.CannotConnectError):
+                        with self.assertRaises(user.MQTTPublishV2.CannotConnectError):
                             SUT = self.class_under_test(mock_logger, mock_publisher, config)
                             SUT._reconnect()
 
@@ -508,10 +508,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set') as mock_tls_set:
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set') as mock_tls_set:
 
                         self.class_under_test(mock_logger, mock_publisher, config)
                         mock_tls_set.assert_called_once_with(ca_certs=config_dict['tls']['ca_certs'],
@@ -544,10 +544,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_TLS
                             del ssl.PROTOCOL_TLS
@@ -582,10 +582,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_TLSv1
                             del ssl.PROTOCOL_TLSv1
@@ -620,10 +620,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_TLSv1_1
                             del ssl.PROTOCOL_TLSv1_1
@@ -658,10 +658,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_TLSv1_2
                             del ssl.PROTOCOL_TLSv1_2
@@ -696,10 +696,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_SSLv2
                             del ssl.PROTOCOL_SSLv2
@@ -734,10 +734,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_SSLv23
                             del ssl.PROTOCOL_SSLv23
@@ -772,10 +772,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_SSLv3
                             del ssl.PROTOCOL_SSLv3
@@ -810,10 +810,10 @@ class TLSBase(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.time'):
-            with mqttstubs.patch(user.mqttpublish.mqtt, "Client", mqttstubs.ClientStub):
-                with mock.patch.object(user.mqttpublish.AbstractPublisher, '_connect'):
-                    with mock.patch.object(user.mqttpublish.mqtt.Client, 'tls_set'):
+        with mock.patch('user.MQTTPublishV2.time'):
+            with mqttstubs.patch(user.MQTTPublishV2.mqtt, "Client", mqttstubs.ClientStub):
+                with mock.patch.object(user.MQTTPublishV2.AbstractPublisher, '_connect'):
+                    with mock.patch.object(user.MQTTPublishV2.mqtt.Client, 'tls_set'):
                         try:
                             saved_version = ssl.PROTOCOL_SSLv3
                             del ssl.PROTOCOL_SSLv3

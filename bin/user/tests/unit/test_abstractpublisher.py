@@ -16,7 +16,7 @@ import random
 
 import paho.mqtt
 
-import user.mqttpublish
+import user.MQTTPublishV2
 import mqttstubs
 
 class TestAbstractPublisher(unittest.TestCase):
@@ -27,9 +27,9 @@ class TestAbstractPublisher(unittest.TestCase):
         config_dict = {}
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.PublisherV1') as mock_client:
-            with mqttstubs.patch_delattr(user.mqttpublish.mqtt, 'CallbackAPIVersion'):
-                user.mqttpublish.AbstractPublisher.get_publisher(mock_logger, mock_publisher, config)
+        with mock.patch('user.MQTTPublishV2.PublisherV1') as mock_client:
+            with mqttstubs.patch_delattr(user.MQTTPublishV2.mqtt, 'CallbackAPIVersion'):
+                user.MQTTPublishV2.AbstractPublisher.get_publisher(mock_logger, mock_publisher, config)
 
                 mock_client.assert_called_once_with(mock_logger, mock_publisher, config)
 
@@ -44,9 +44,9 @@ class TestAbstractPublisher(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.PublisherV2') as mock_client:
-            with mqttstubs.patch_addattr(user.mqttpublish.mqtt, 'CallbackAPIVersion'):
-                user.mqttpublish.AbstractPublisher.get_publisher(mock_logger, mock_publisher, config)
+        with mock.patch('user.MQTTPublishV2.PublisherV2') as mock_client:
+            with mqttstubs.patch_addattr(user.MQTTPublishV2.mqtt, 'CallbackAPIVersion'):
+                user.MQTTPublishV2.AbstractPublisher.get_publisher(mock_logger, mock_publisher, config)
 
                 mock_client.assert_called_once_with(mock_logger, mock_publisher, config)
 
@@ -61,9 +61,9 @@ class TestAbstractPublisher(unittest.TestCase):
         }
         config = configobj.ConfigObj(config_dict)
 
-        with mock.patch('user.mqttpublish.PublisherV2MQTT3') as mock_client:
-            with mqttstubs.patch_addattr(user.mqttpublish.mqtt, 'CallbackAPIVersion'):
-                user.mqttpublish.AbstractPublisher.get_publisher(mock_logger, mock_publisher, config)
+        with mock.patch('user.MQTTPublishV2.PublisherV2MQTT3') as mock_client:
+            with mqttstubs.patch_addattr(user.MQTTPublishV2.mqtt, 'CallbackAPIVersion'):
+                user.MQTTPublishV2.AbstractPublisher.get_publisher(mock_logger, mock_publisher, config)
 
                 mock_client.assert_called_once_with(mock_logger, mock_publisher, config)
 

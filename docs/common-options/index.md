@@ -1,11 +1,11 @@
 ---
-title: Configuring MQTTPublish
+title: Configuring MQTTPublishV2
 nav_order: 2
 ---
 
-There are three major pieces to the MQTTPublish configuration.
+There are three major pieces to the MQTTPublishV2 configuration.
 
-## The `[MQTTPublish]` section
+## The `[MQTTPublishV2]` section
 
 This configures the MQTT connection and any necessary WeeWX options.
 
@@ -45,7 +45,7 @@ The default is `2`.
 ### clientid
 
 The clientid to connect with.
-The default value is `MQTTPublish-xxxx`, where xxxx is a random number between 1000 and 9999.
+The default value is `MQTTPublishV2-xxxx`, where xxxx is a random number between 1000 and 9999.
 
 ### host
 

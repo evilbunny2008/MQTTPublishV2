@@ -3,10 +3,10 @@
 #    See the file LICENSE.txt for your full rights.
 #
 
-""" Installer for mqttpublish service.
+""" Installer for MQTTPublishV2 service.
 
 To uninstall run
-wee_extension --uninstall=mqttpublish
+wee_extension --uninstall=MQTTPublishV2
 """
 
 from io import StringIO
@@ -18,7 +18,7 @@ from weecfg.extension import ExtensionInstaller
 VERSION = "2.0.6"
 
 MQTTPUBLISH_CONFIG = """
-[MQTTPublish]
+[MQTTPublishV2]
     # Whether the service is enabled or not.
     # Valid values: true or false
     # Default is true.
@@ -209,17 +209,17 @@ class MQTTPublishInstaller(ExtensionInstaller):
 
         install_dict = {
             'version': VERSION,
-            'name': 'MQTTPublish',
+            'name': 'MQTTPublishV2',
             # add a leading space, so that long versions does not run into the description
             'description': ' Publish WeeWX data to a MQTT broker.',
-            'author': "Rich Bell",
-            'author_email': "bellrichm@gmail.com",
-            'files': [('bin/user', ['bin/user/mqttpublish.py'])]
+            'author': 'John Smith',
+            'author_email': "deltafoxtrot256+MQTTPublishV2@gmail.com",
+            'files': [('bin/user', ['bin/user/MQTTPublishV2.py'])]
         }
 
         mqttpublish_dict = configobj.ConfigObj(StringIO(MQTTPUBLISH_CONFIG))
         install_dict['config'] = mqttpublish_dict
         # ToDo: Better service group?
-        install_dict['restful_services'] = 'user.mqttpublish.PublishWeeWX'
+        install_dict['restful_services'] = 'user.MQTTPublishV2.PublishWeeWX'
 
         super().__init__(install_dict)

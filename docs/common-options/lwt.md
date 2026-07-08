@@ -1,6 +1,6 @@
 ---
 title: LWT
-parent: Configuring MQTTPublish
+parent: Configuring MQTTPublishV2
 nav_order: 2
 ---
 

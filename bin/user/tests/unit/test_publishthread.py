@@ -15,7 +15,7 @@ import configobj
 import random
 import time
 
-import user.mqttpublish
+import user.MQTTPublishV2
 
 class TestPublishWeeWXThread(unittest.TestCase):
     def test_update_record(self):
@@ -25,12 +25,12 @@ class TestPublishWeeWXThread(unittest.TestCase):
         topics_archive = None
         data_queue = None
 
-        SUT = user.mqttpublish.PublishWeeWXThread(mock_logger, None, config, topics_loop, topics_archive, data_queue, mock.Mock())
+        SUT = user.MQTTPublishV2.PublishWeeWXThread(mock_logger, None, config, topics_loop, topics_archive, data_queue, mock.Mock())
 
         field1 = helpers.random_string()
         aggreagate1 = helpers.random_string()
         week_start = random.randint(0, 6)
-        timespan_provider = user.mqttpublish.TimeSpanProvider(week_start)
+        timespan_provider = user.MQTTPublishV2.TimeSpanProvider(week_start)
         period = random.choice(list(timespan_provider.period_timespans.keys()))
 
         topic_dict = {
@@ -57,9 +57,9 @@ class TestPublishWeeWXThread(unittest.TestCase):
             'usUnits': 1,
         }
 
-        with mock.patch.object(user.mqttpublish.weewx.units, 'to_std_system', return_value=updated_record):
-            with mock.patch.object(user.mqttpublish.weewx.xtypes, 'get_aggregate'):
-                with mock.patch.object(user.mqttpublish.weewx.units, 'convertStd', return_value=[field_value]):
+        with mock.patch.object(user.MQTTPublishV2.weewx.units, 'to_std_system', return_value=updated_record):
+            with mock.patch.object(user.MQTTPublishV2.weewx.xtypes, 'get_aggregate'):
+                with mock.patch.object(user.MQTTPublishV2.weewx.units, 'convertStd', return_value=[field_value]):
 
                     final_record = SUT.update_record(topic_dict, record)
 
@@ -82,7 +82,7 @@ class TestPublishWeeWXThread(unittest.TestCase):
         topics_archive = None
         data_queue_mock = mock.Mock()
 
-        SUT = user.mqttpublish.PublishWeeWXThread(mock_logger, None, config, topics_loop, topics_archive, data_queue_mock, None)
+        SUT = user.MQTTPublishV2.PublishWeeWXThread(mock_logger, None, config, topics_loop, topics_archive, data_queue_mock, None)
 
         field1 = helpers.random_string()
 
@@ -105,10 +105,10 @@ class TestPublishWeeWXThread(unittest.TestCase):
         converted_value = random.random()
         unit_type = helpers.random_string()
 
-        with mock.patch.object(user.mqttpublish.weewx.units,
+        with mock.patch.object(user.MQTTPublishV2.weewx.units,
                                'getStandardUnitType',
                                return_value=(unit_type, helpers.random_string())):
-            with mock.patch.object(user.mqttpublish.weewx.units, 'convert', return_value=[converted_value]):
+            with mock.patch.object(user.MQTTPublishV2.weewx.units, 'convert', return_value=[converted_value]):
 
                 (name, value) = SUT.update_field(topic_dict,
                                                  topic_dict['fields'][field1],

@@ -6,6 +6,6 @@ nav_order: 1
 nav_exclude: true
 ---
 
-## WeeWX-MQTTPublish
+## WeeWX-MQTTPublishV2
 
 A WeeWX extension that publishes data to a MQTT broker.
