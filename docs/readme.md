@@ -27,22 +27,22 @@ This extension is installed using the [weectl extension utility](https://www.wee
 The latest release can be installed with the invocation
 
 ```shell
-weectl extension install https://github.com/weewx-mqtt/publish/archive/refs/tags/latest.zip
+weectl extension install https://github.com/evilbunny2008/MQTTPublishV2/archive/refs/tags/latest.zip
 ```
 
 If a specific version is desired, the invocation would look like
 
 ```shell
-weectl extension install https://github.com/weewx-mqtt/publish/archive/refs/tags/vX.Y.Z.zip
+weectl extension install https://github.com/evilbunny2008/MQTTPublishV2/archive/refs/tags/vX.Y.Z.zip
 ```
 
 where X.Y.Z is the release.
-The list of releases can be found at [https://github.com/weewx-mqtt/publish/releases](https://github.com/weewx-mqtt/publish/releases).
+The list of releases can be found at [https://github.com/evilbunny2008/MQTTPublishV2/releases](https://github.com/evilbunny2008/MQTTPublishV2/releases).
 
 The version under development can be installed from the master branch using the following invocation
 
 ```shell
-weectl extension install https://github.com/weewx-mqtt/publish/archive/master.zip
+weectl extension install https://github.com/evilbunny2008/MQTTPublishV2/archive/master.zip
 ```
 
 Where `master` is the branch name.
@@ -59,20 +59,4 @@ source ~/weewx-venv/bin/activate
 
 ## Configuring
 
-weewx-mqtt/publish is installed with it disabled. Setting flag, [enable = true](https://weewx-mqtt.github.io/publish/common-options/#enable) and restarting WeeWX will start publishing MQTT data to the configured broker and topics.
-The processing can be controlled by updating the [configuration](https://weewx-mqtt.github.io/publish/common-options) in the WeeWX configuration file.
-The [host](https://weewx-mqtt.github.io/publish/common-options/#host) and [topic(s)](https://weewx-mqtt.github.io/publish/common-options/#topic-name-sections) to publish to usually need to be configured.
-
-## Updating
-
----
-**Getting Help**
-
-For additional information see the [help](https://weewx-mqtt.github.io/publish/home/).
-
-Feel free to
-[open an issue](https://github.com/weewx-mqtt/publish/issues/new),
-[start a discussion in github](https://github.com/weewx-mqtt/publish/discussions/new),
-[post on WeeWX google group](https://groups.google.com/g/weewx-user).
-When doing so, see
-[Help! Posting to weewx user](https://github.com/weewx/weewx/wiki/) for information on capturing the log.
+See the [weewx-sample.conf](https://github.com/evilbunny2008/MQTTPublishV2/blob/main/weewx-sample.conf) for an example stanze
