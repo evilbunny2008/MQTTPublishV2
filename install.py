@@ -308,8 +308,6 @@ class MQTTPublishInstaller(ExtensionInstaller):
     """ The extension installer. """
     def __init__(self):
 
-        config_dict = configobj.ConfigObj(StringIO(CONFIG))
-
         install_dict = {
             'version': VERSION,
             'name': 'MQTTPublishV2',
@@ -318,7 +316,7 @@ class MQTTPublishInstaller(ExtensionInstaller):
             'author': 'John Smith',
             'author_email': "deltafoxtrot256+MQTTPublishV2@gmail.com",
             'files': [('bin/user', ['bin/user/MQTTPublishV2.py'])],
-            'config': config_dict,
+            'config': configobj.ConfigObj(StringIO(config_dict)),
             'restful_services': 'user.MQTTPublishV2.PublishWeeWX',
         }
 
