@@ -6,7 +6,7 @@
 """ Installer for MQTTPublishV2 service.
 
 To uninstall run
-wee_extension --uninstall=MQTTPublishV2
+weectl extension uninstall MQTTPublishV2
 """
 
 from io import StringIO
@@ -15,7 +15,7 @@ import configobj
 
 from weecfg.extension import ExtensionInstaller
 
-VERSION = "2.0.7"
+VERSION = "2.0.8"
 
 CONFIG = """
 [MQTTPublishV2]
@@ -94,85 +94,90 @@ CONFIG = """
         # Default is tlsv12.
         tls_version = tlsv12
 
-    [[lwt]]
+    # [[lwt]]
         # Turn lwt on and off.
         # Default is true.
-        enable = false
+        # enable = false
 
         # The topic that the will message should be published on.
         # Default is 'status'.
-        topic = 'status'
+        # topic = 'status'
 
         # Default is 'online'.
-        online_payload ='online'
+        # online_payload ='online'
 
         # The message to send as a will.
         # Default is 'offline'.
-        offline_payload = offline
+        # offline_payload = offline
 
         # he quality of service level to use for the will.
         # Default is 0
-        qos = 0
+        # qos = 0
 
         # If set to true, the will message will be set as the "last known good"/retained message for the topic.
         # The default is true.
-        retain = true
+        # retain = true
 
-    [[topics]]
-        [[[website/loop]]]
+    # [[topics]]
+        # [[[website/loop]]]
             # Controls if the topic is published.
             # Default is true.
-            publish = false
+            # publish = false
 
             # The format of the MQTT payload.
             # Currently support: individual, json, keyword
             # The default is 'json'
-            type = json
+            # type = json
 
             # The binding, loop or archive.
             # Default is 'archive, loop'.
-            binding = loop
+            # binding = loop
 
             # The QOS level to publish to.
             # Default is 0
-            qos = 1
+            # qos = 1
 
             # The MQTT retain flag.
             # The default is False.
-            retain = true
+            # retain = true
 
             # The unit system for data published to this topic.
+            # Options are US, METRIC or METRICWX
             # The default is US.
-            unit_system = US
+            # unit_system = US
 
             # True if all fields should not be published.
             # Useful if you only want select fields to be published
             # Valid values: True, False.
             # Default is  False
-            ignore = true
+            # ignore = true
 
-            [[[[fields]]]]
-                [[[[[outTemp]]]]]
+            # [[[[fields]]]]
+                # [[[[[dateTime]]]]]
+                    # Include the current dateTime value
+                    # ignore = false
+
+                # [[[[[outTemp]]]]]
                     # True if the field should not be published.
                     # Valid values: True, False.
                     # Default is  False
-                    ignore = true
+                    # ignore = true
 
                     # The WeeWX name of the data to be published.
                     # Default is the config section name.
-                    # name =
+                    # name = outTemp
 
                     # The WeeWX unit to convert the data being published to.
                     # Default is None.
-                    # unit =
+                    # unit = degree_C
 
                     # Controls if data with a value of 'None' should be published.
                     # The default is false.
-                    publish_none_value = true
+                    # publish_none_value = true
 
                     # Controls if the WeewX unit label should be append to the data being published.
                     # The default is true.
-                    append_unit_label = false
+                    # append_unit_label = false
 
                     # The data type conversion to apply to the data being published.
                     # The default is not to convert.
@@ -182,121 +187,45 @@ CONFIG = """
                     # The default is '%s'.
                     # format_string = %s
 
-        [[[website/archive]]]
-            # Controls if the topic is published.
-            # Default is true.
-            publish = false
+        # [[[website/archive]]]
+            # publish = false
+            # type = json
+            # binding = archive
+            # qos = 1
+            # retain = true
+            # unit_system = METRIC
+            # ignore = true
 
-            # The format of the MQTT payload.
-            # Currently support: individual, json, keyword
-            # The default is 'json'
-            type = json
+            # [[[[fields]]]]
+                # [[[[[dateTime]]]]]
+                    # ignore = false
 
-            # The binding, loop or archive.
-            # Default is 'archive, loop'.
-            binding = archive
+                # [[[[[outTemp]]]]]
+                    # ignore = false
 
-            # The QOS level to publish to.
-            # Default is 0
-            qos = 1
+        # [[[website/stats]]]
+            # publish = false
+            # type = json
+            # binding = archive
+            # qos = 1
+            # retain = true
+            # unit_system = METRICWX
+            # ignore = true
+            # minmax = both
+            # day = true
+            # yesterday = true
+            # month = true
+            # last_month = true
+            # year = true
+            # last_year = true
+            # alltime = true
 
-            # The MQTT retain flag.
-            # The default is False.
-            retain = true
+            # [[[[fields]]]]
+                # [[[[[dateTime]]]]]
+                    # ignore = false
 
-            # The unit system for data published to this topic.
-            # The default is US.
-            unit_system = US
-
-            # True if all fields should not be published.
-            # Useful if you only want select fields to be published
-            # Default is  False
-            ignore = true
-
-            [[[[fields]]]]
-                [[[[[dateTime]]]]]
-                    ignore = false
-
-                [[[[[outTemp]]]]]
-                    # True if the field should not be published.
-                    # Valid values: True, False.
-                    # Default is  False
-                    ignore = false
-
-                    # The WeeWX name of the data to be published.
-                    # Default is the config section name.
-                    # name =
-
-                    # The WeeWX unit to convert the data being published to.
-                    # Default is None.
-                    # unit =
-
-                    # Controls if data with a value of 'None' should be published.
-                    # The default is false.
-                    publish_none_value = false
-
-                    # Controls if the WeewX unit label should be append to the data being published.
-                    # The default is true.
-                    append_unit_label = true
-
-                    # The data type conversion to apply to the data being published.
-                    # The default is 'string'.
-                    conversion_type = string
-
-                    # The formatting to apply to the data being published.
-                    # The default is '%s'.
-                    format_string = %s
-
-        [[[website/stats]]]
-            # Controls if the topic is published.
-            # Default is true.
-            publish = false
-
-            # The format of the MQTT payload.
-            # Currently support: individual, json, keyword
-            # The default is 'json'
-            type = json
-
-            # The binding, loop or archive.
-            # Default is 'archive, loop'.
-            binding = archive
-
-            # The QOS level to publish to.
-            # Default is 0
-            qos = 1
-
-            # The MQTT retain flag.
-            # The default is False.
-            retain = true
-
-            # The unit system for data published to this topic.
-            # The default is US.
-            unit_system = US
-
-            # True if all fields should not be published.
-            # Useful if you only want select fields to be published
-            # Default is  False
-            ignore = true
-
-            # Set the following to true to auto-populate *_outTemp_min etc
-            # Options: min, max, both or sum
-            minmax = both
-
-            # Set the following to true to auto-populate day_outTemp_*, yesterday_* etc
-            day = true
-            yesterday = true
-            month = true
-            last_month = true
-            year = true
-            last_year = true
-            alltime = true
-
-            [[[[fields]]]]
-                [[[[[dateTime]]]]]
-                    ignore = false
-
-                [[[[[outTemp]]]]]
-                    ignore = false
+                # [[[[[outTemp]]]]]
+                    # ignore = false
 """
 
 def loader():
@@ -311,7 +240,7 @@ class MQTTPublishInstaller(ExtensionInstaller):
         install_dict = {
             'version': VERSION,
             'name': 'MQTTPublishV2',
-            # add a leading space, so that long versions does not run into the description
+            # add a leading space, so that long versions do not run into the description
             'description': ' Publish WeeWX data to a MQTT broker.',
             'author': 'John Smith',
             'author_email': "deltafoxtrot256+MQTTPublishV2@gmail.com",
