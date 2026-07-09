@@ -245,7 +245,7 @@ class MQTTPublishInstaller(ExtensionInstaller):
             'author': 'John Smith',
             'author_email': "deltafoxtrot256+MQTTPublishV2@gmail.com",
             'files': [('bin/user', ['bin/user/MQTTPublishV2.py'])],
-            'config': configobj.ConfigObj(StringIO(config_dict)),
+            'config': configobj.ConfigObj(StringIO(CONFIG)),
             'restful_services': 'user.MQTTPublishV2.PublishWeeWX',
         }
 
