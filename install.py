@@ -11,11 +11,9 @@ weectl extension uninstall MQTTPublishV2
 
 from io import StringIO
 
-import configobj
-
 from weecfg.extension import ExtensionInstaller
 
-VERSION = "2.1.1"
+VERSION = "2.1.2"
 
 def loader():
     """ Load and return the extension installer. """
@@ -34,7 +32,6 @@ class MQTTPublishInstaller(ExtensionInstaller):
             'author': 'John Smith',
             'author_email': "deltafoxtrot256+MQTTPublishV2@gmail.com",
             'files': [('bin/user', ['bin/user/MQTTPublishV2.py'])],
-            'config': configobj.ConfigObj(StringIO(CONFIG)),
             'restful_services': 'user.MQTTPublishV2.PublishWeeWX',
         }
 
