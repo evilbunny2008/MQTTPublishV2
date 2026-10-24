@@ -13,7 +13,7 @@ from io import StringIO
 
 from weecfg.extension import ExtensionInstaller
 
-VERSION = "2.1.2"
+VERSION = "2.1.3"
 
 def loader():
     """ Load and return the extension installer. """
