@@ -1,9 +1,0 @@
-name: Keep the versions up-to-date
-on:
-  release:
-    types:
-      - published
-
-jobs:
-  version:
-    uses: weewx-extensions/development-tools/.github/workflows/versioning.yml@latest
